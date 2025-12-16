@@ -318,9 +318,14 @@ body.medieval-theme #shop button {
 }
 
 body.medieval-theme .feedback-text {
-    color: #ffd700 !important;
-    /* Force gold text */
-    -webkit-text-stroke: 1px #000;
+    color: #fffacd !important;
+    /* LemonChiffon (Light Gold) */
+    font-size: 32px;
+    /* Bigger text */
+    -webkit-text-stroke: 0;
+    /* Remove stroke */
+    text-shadow: 2px 2px 0 #000, 0 0 10px #ffd700;
+    /* Glow */
 }
 
 

@@ -34,8 +34,13 @@ export function onMiss(event) {
     missElement.innerText = state.currentMisses;
 }
 
-export function GetCoins() {
+export function GetCoins() 
+{
     let coinsToGet = (state.currentScore + state.currentCombo) - state.currentMisses;
+
+    if(coinsToGet < 0)
+        coinsToGet = 0;
+
     state.myCoins += coinsToGet;
     coinElement.innerText = state.myCoins;
 
