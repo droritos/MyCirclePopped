@@ -1,4 +1,4 @@
-# MyCirclePopped
+# 🔴 Circle Popped!
 
 Circle Popped is a fast-paced arcade reflex game where speed and precision are key. Click the targets before they disappear, build your combo, and buy upgrades to achieve the highest score possible!
 
