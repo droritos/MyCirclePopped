@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Circle Popped</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&family=MedievalSharp&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1> My Circle Popped </h1>
+    <div id="hud">
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <p>Score: <span id="scoreValue">0</span></p>
+            <p>Time left: <span id="timeValue">0</span></p>
+            <p>Combo: <span id="comboValue">0</span></p>
+            <p>Misses: <span id="missValue">0</span></p>
+            <p>Best Score: <span id="bestScoreValue">0</span></p>
+        </div>
+
+        <!-- Controls Row -->
+        <div class="controls-row">
+            <button id="startButton"> Start Button </button>
+            <button id="resetButton"> Reset Button </button>
+            <button id="themeButton">Switch to Medieval</button>
+        </div>
+    </div>
+
+    <div id="spawningBox"></div>
+    <div id="shop">
+        <p>Coins: <span id="coinValue">0</span></p>
+        <button id="upgrade1Button">Slow Target (Cost: 20) </button>
+        <button id="upgrade2Button">Big Target (Cost: 30) </button>
+        <button id="upgrade3Button">Extra Time (Cost: 40) </button>
+    </div>
+
+    <script type="module" src="scripts/main.js"></script> <!--Run the script last!!-->
+
+</body>
+
+</html>

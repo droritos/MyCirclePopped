@@ -1,0 +1,342 @@
+:root {
+    --bg-color: #121212;
+    --surface-color: #1e1e2e;
+    --text-color: #ffffff;
+    --primary-color: #00ffff;
+    /* Cyan */
+    --secondary-color: #ff00ff;
+    /* Magenta */
+    --accent-color: #ffff00;
+    /* Yellow */
+    --danger-color: #ff4444;
+
+    --glow-primary: 0 0 10px rgba(0, 255, 255, 0.7);
+    --glow-secondary: 0 0 10px rgba(255, 0, 255, 0.7);
+
+    --font-heading: 'Press Start 2P', cursive;
+    --font-body: 'Inter', sans-serif;
+
+    /* Background Pattern - Cyberpunk Grid */
+    --bg-image:
+        linear-gradient(rgba(18, 18, 25, 0.9), rgba(18, 18, 25, 0.9)),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e1e2e' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
+    --arena-border: 2px solid var(--primary-color);
+    --arena-shadow: 0 0 20px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    --arena-bg: #000;
+}
+
+/* --- MEDIEVAL THEME OVERRIDES --- */
+body.medieval-theme {
+    --bg-color: #2b1d0e;
+    /* Dark Wood */
+    --surface-color: #3d2b1f;
+    /* Wood Panel */
+    --text-color: #d4c59a;
+    /* Parchment */
+    --primary-color: #ffd700;
+    /* Gold */
+    --secondary-color: #8b0000;
+    /* Crimson */
+    --accent-color: #cd853f;
+    /* Bronze/Leather */
+    --danger-color: #550000;
+
+    --font-heading: 'MedievalSharp', cursive;
+    --font-body: 'MedievalSharp', cursive;
+
+    /* Background - Old Paper / Leather Texture (Simulated with simple noise/color) */
+    --bg-image: radial-gradient(circle, #3d2b1f 0%, #1a1008 100%);
+
+    --arena-border: 6px solid #5c4033;
+    /* Thick Wood Border */
+    --arena-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7) inset, 0 0 0 4px #3e2723;
+    --arena-bg: #261a12;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-image: var(--bg-image);
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Headers */
+h1 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    text-shadow: 2px 2px 0px var(--secondary-color);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* UI Container */
+#hud,
+#shop {
+    background: rgba(30, 30, 46, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: column;
+    /* Force Vertical Stack for HUD */
+    align-items: center;
+    gap: 15px;
+    transition: all 0.5s ease;
+}
+
+/* Flex Rows inside HUD */
+.stats-row,
+.controls-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+/* Shop handles its own layout (keep horizontal or allow wrap) */
+#shop {
+    flex-direction: row;
+    /* Shop can stay horizontal */
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+/* Medieval Override for UI */
+body.medieval-theme #hud,
+body.medieval-theme #shop {
+    background: #3d2b1f;
+    /* Wood */
+    border: 2px solid #8b4513;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    /* Less rounded */
+}
+
+#hud p,
+#shop p {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    margin: 5px;
+    color: var(--secondary-color);
+}
+
+/* Medieval Text Color Override */
+body.medieval-theme #hud p,
+body.medieval-theme #shop p {
+    color: #a0522d;
+    /* Sienna */
+    font-size: 1.0rem;
+    /* Comfortable size */
+}
+
+
+#hud span,
+#shop span {
+    color: var(--text-color);
+}
+
+/* Arena */
+#spawningBox {
+    width: 600px;
+    height: 400px;
+    background-color: var(--arena-bg);
+    border: var(--arena-border);
+    box-shadow: var(--arena-shadow);
+    margin: 20px auto;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+
+    /* Grid Pattern (Only shows if var is set, otherwise overwritten by theme) */
+    background-image:
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    transition: all 0.5s ease;
+}
+
+/* Medieval Arena Override - Remove Grid */
+body.medieval-theme #spawningBox {
+    background-image: none;
+    /* No grid */
+    border-radius: 2px;
+}
+
+/* Target */
+.target {
+    width: 50px;
+    height: 50px;
+    /* Default Neon Target */
+    background: radial-gradient(circle at 30% 30%, #ffaaaa, #ff0000);
+    position: absolute;
+    border-radius: 50%;
+    cursor: crosshair;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    transition: top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: pulse 1s infinite alternate;
+}
+
+/* Medieval Target - Archery Target style */
+body.medieval-theme .target {
+    /* Rings: White outer, Black mid, Red inner, Yellow center */
+    background: radial-gradient(circle,
+            #ffd700 0%, #ffd700 20%,
+            #ff0000 20%, #ff0000 40%,
+            #000000 40%, #000000 60%,
+            #ffffff 60%, #ffffff 100%);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    animation: none;
+    /* No pulsing in medieval times! */
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+
+    to {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+    }
+}
+
+/* Buttons */
+button {
+    font-family: var(--font-body);
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: linear-gradient(45deg, var(--primary-color), #00cccc);
+    color: #000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Medieval Button Override */
+body.medieval-theme button {
+    background: linear-gradient(to bottom, #8b4513, #5c4033);
+    color: #ffd700;
+    border: 2px solid #3e2723;
+    border-radius: 2px;
+    box-shadow: 0 4px 0 #3e2723;
+    text-shadow: 1px 1px 0 #000;
+}
+
+body.medieval-theme button:hover {
+    background: linear-gradient(to bottom, #a0522d, #6d4c41);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #3e2723;
+}
+
+body.medieval-theme button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #3e2723;
+}
+
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 255, 255, 0.4);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+#resetButton {
+    background: linear-gradient(45deg, var(--danger-color), #cc0000);
+    color: white;
+}
+
+/* Medieval Reset */
+body.medieval-theme #resetButton {
+    background: linear-gradient(to bottom, #800000, #500000);
+    color: white;
+}
+
+
+#themeButton {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    font-size: 0.7rem;
+}
+
+body.medieval-theme #themeButton {
+    background: #2b1d0e;
+    color: #ffd700;
+    border: 1px solid #ffd700;
+    box-shadow: none;
+}
+
+
+#shop button {
+    background: linear-gradient(45deg, var(--accent-color), #ddbb00);
+    font-size: 0.8rem;
+}
+
+body.medieval-theme #shop button {
+    background: linear-gradient(to bottom, #daa520, #b8860b);
+    color: #3e2723;
+    box-shadow: 0 4px 0 #8b4513;
+}
+
+
+/* Feedback Text */
+.feedback-text {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    text-shadow: 3px 3px 0px #000;
+    -webkit-text-stroke: 1px white;
+    position: absolute;
+    font-weight: bold;
+    pointer-events: none;
+    user-select: none;
+    animation: floatUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    z-index: 10;
+}
+
+body.medieval-theme .feedback-text {
+    color: #ffd700 !important;
+    /* Force gold text */
+    -webkit-text-stroke: 1px #000;
+}
+
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1.2);
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1);
+        opacity: 0;
+    }
+}
